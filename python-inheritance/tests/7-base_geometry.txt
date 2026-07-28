@@ -1,9 +1,7 @@
 >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
->>> bg = BaseGeometry()
 
-# Valid integers
->>> bg.integer_validator("my_int", 12)
->>> bg.integer_validator("width", 89)
+# Check instantiation
+>>> bg = BaseGeometry()
 
 # area raises exception
 >>> bg.area()
@@ -11,11 +9,22 @@ Traceback (most recent call last):
     ...
 Exception: area() is not implemented
 
-# String instead of integer
->>> bg.integer_validator("name", "John")
+# Missing all arguments
+>>> bg.integer_validator()
 Traceback (most recent call last):
     ...
-TypeError: name must be an integer
+TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
+# Missing value argument
+>>> bg.integer_validator("age")
+Traceback (most recent call last):
+    ...
+TypeError: integer_validator() missing 1 required positional argument: 'value'
+
+# Valid integer
+>>> bg.integer_validator("age", 1)
+>>> bg.integer_validator("my_int", 12)
+>>> bg.integer_validator("width", 89)
 
 # Zero value
 >>> bg.integer_validator("age", 0)
@@ -24,19 +33,13 @@ Traceback (most recent call last):
 ValueError: age must be greater than 0
 
 # Negative value
->>> bg.integer_validator("distance", -4)
+>>> bg.integer_validator("age", -4)
 Traceback (most recent call last):
     ...
-ValueError: distance must be greater than 0
+ValueError: age must be greater than 0
 
-# Float value
->>> bg.integer_validator("price", 3.5)
-Traceback (most recent call last):
-    ...
-TypeError: price must be an integer
-
-# None value
->>> bg.integer_validator("age", None)
+# String value
+>>> bg.integer_validator("age", "4")
 Traceback (most recent call last):
     ...
 TypeError: age must be an integer
@@ -64,6 +67,9 @@ TypeError: age must be an integer
 Traceback (most recent call last):
     ...
 TypeError: age must be an integer
+
+# None value
+>>> bg.integer_validator("age", None)
 Traceback (most recent call last):
     ...
-TypeError: integer_validator() missing 1 required positional argument: 'value'
+TypeError: age must be an integer
