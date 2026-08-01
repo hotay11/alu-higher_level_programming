@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Send a POST request with an email parameter and display the response body."""
+"""Send a POST request with an email param and print the response body."""
 import urllib.request
 import urllib.parse
 import sys
