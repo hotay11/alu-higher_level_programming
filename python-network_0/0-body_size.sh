@@ -1,2 +1,3 @@
 #!/bin/bash
-curl -s -o /dev/null -w "%{size_download}\n" "$1"
+# Sends a request to the URL passed as argument and displays the body size in bytes
+curl -s "$1" | wc -c
