@@ -1,3 +1,3 @@
 #!/bin/bash
-# Sends a request to the URL passed as argument and displays the body size in bytes
-curl -s "$1" | wc -c
+# displays the size of the body of the response
+curl -s -o /dev/null -w "%{size_download}" "$1"
