@@ -1,8 +1,3 @@
 #!/bin/bash
-curl -s -o /tmp/body_$$ -w "%{http_code}" "$1" | {
-    read code
-    if [ "$code" -eq 200 ]; then
-        cat /tmp/body_$$
-    fi
-}
-rm -f /tmp/body_$$
+# displays the body of a 200 status GET response, following redirects
+[ "$(curl -s -o /dev/null -w "%{http_code}" -L "$1")" = "200" ] && curl -s -L "$1"
