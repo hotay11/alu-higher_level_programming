@@ -11,11 +11,18 @@ The ``matrix_divided`` function divides all elements of a matrix
 >>> matrix_divided([[1, 2], [3, 4]], 1)
 [[1.0, 2.0], [3.0, 4.0]]
 
->>> matrix_divided([[1, 2], [3]], 2)
+>>> matrix_divided([[3, 9], [12, 15]], -3)
+[[-1.0, -3.0], [-4.0, -5.0]]
+
+>>> matrix_divided([[3, 9], [12, 15]], 0)
+Traceback (most recent call last):
+ZeroDivisionError: division by zero
+
+>>> matrix_divided([[3, 9], [12, 15, 3]], 3)
 Traceback (most recent call last):
 TypeError: Each row of the matrix must have the same size
 
->>> matrix_divided([[1, "a"]], 2)
+>>> matrix_divided([[3, "9"], [15, 3]], 3)
 Traceback (most recent call last):
 TypeError: matrix must be a matrix (list of lists) of integers/floats
 
@@ -27,6 +34,19 @@ TypeError: matrix must be a matrix (list of lists) of integers/floats
 Traceback (most recent call last):
 TypeError: div must be a number
 
->>> matrix_divided([[1, 2], [3, 4]], 0)
+>>> matrix_divided([[1, 2], [3, 4]], float('inf'))
+[[0.0, 0.0], [0.0, 0.0]]
+
+>>> matrix_divided([[1, float('inf')], [3, 4]], 2)
+[[0.5, inf], [1.5, 2.0]]
+
+>>> matrix_divided([[1, float('nan')], [3, 4]], 2)
+[[0.5, nan], [1.5, 2.0]]
+
+>>> matrix_divided([[1, 2], [3, 4]])
 Traceback (most recent call last):
-ZeroDivisionError: division by zero
+TypeError: matrix_divided() missing 1 required positional argument: 'div'
+
+>>> matrix_divided()
+Traceback (most recent call last):
+TypeError: matrix_divided() missing 2 required positional arguments: 'matrix' and 'div'
